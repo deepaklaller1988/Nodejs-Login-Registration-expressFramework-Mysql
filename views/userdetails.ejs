@@ -1,0 +1,43 @@
+
+<%include header %>
+
+<center>
+    <h1><b>View & Manage Users Here!!</h1>
+    <style>
+    table, th, td{
+        border: 4px solid #1F9CA0;
+        border-collapse: collapse;
+        border-style: ridge;
+    }
+    </style>
+    
+    <table cellspacing="10" cellpadding="5">
+    <tr>
+    <th>RegID</th>
+    <th>Name</th>
+    <th>EmailID</th>
+    <th>Mobile</th>
+    <th>Status</th>
+    <th>Action</th>
+    </tr>
+    
+    <% for(let i in result) { %>    	
+          <tr>
+            <td><%= result[i].regId %></td>
+            <td><%= result[i].name %></td>		
+        <td><%= result[i].email %></td>
+        <td><%= result[i].mobile %></td>
+        <% if(result[i].status==1) { %>
+            <td><a href="/users/manageuserstatus?regId=<%= result[i].regId %>&status=block" title="Block User"><img src="../images/block.png" height='50' width='50' /></a></td>
+        <% } else { %>
+            <td><a href="/users/manageuserstatus?regId=<%= result[i].regId %>&status=unblock" title="Un-Block User"><img src="../images/unblock.png" height='50' width='50' /></a></td>
+        <% } %>
+        
+        <td><a href="/users/manageuserstatus?regId=<%= result[i].regId %>&status=delete" title="Delete User"><img src="../images/delete.jpeg" height='50' width='50' /></a></td>
+        </tr>
+    <% } %>    	
+    
+    </table>    	
+    </center>
+    
+    <% include footer %>
